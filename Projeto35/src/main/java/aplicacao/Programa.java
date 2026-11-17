@@ -5,6 +5,7 @@ import dominio.Pessoa;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.Map;
 
 public class Programa {
     public static void main(String[] args) {
@@ -15,7 +16,8 @@ public class Programa {
         Pessoa p2 = new Pessoa(null,"Joaquim Torres","joaquim@gmail.com");
         Pessoa p3 = new Pessoa(null,"Ana Maria","ana@gmail.com");
         */
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("exemplo-jpa");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("exemplo-jpa",
+                Map.of("javax.persistence.jdbc.password", System.getenv("DB_PASSWORD")));
         EntityManager em = emf.createEntityManager();
         /*
         em.getTransaction().begin();
